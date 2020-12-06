@@ -176,7 +176,12 @@ Append to mongo.yaml:
           targetPort: 27017
 
 >kubectl apply -f mongo.yaml  
->kubectl get service
+>kubectl get service  
+>kubectl descibe service serviceNAME  
+>kubectl get pod -o wide
+
+To see all components about mongodb
+>kubectl get all | grep mongodb
 
 ### Create Mongo Express Deployment
 Create mongo-express.yaml containing:
@@ -252,13 +257,8 @@ Append to mongo-express.yaml:
 
 >kubectl apply -f mongo-express.yaml  
 >kubectl get service  
->kubectl get pod  
 >kubectl describe service mongodb-service  
-
-
 >kubectl get pod -o wide  
-
-
 >kubectl describe pod podID  
 >kubectl logs podID  
 

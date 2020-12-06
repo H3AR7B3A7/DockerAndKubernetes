@@ -1,4 +1,4 @@
-# Docker and Kubernetes
+# Docker
 We will be using nginx as example image, but using other images is very similar. 
 Be sure to check their docs to learn more about them:
 [Documentation for nginx](https://hub.docker.com/_/nginx)  
@@ -8,7 +8,7 @@ Be sure to check their docs to learn more about them:
 Download and install docker desktop [here](https://www.docker.com/get-started).
 
 ### Version Check
->docker --version
+>docker --version  
 Docker version 19.03.13, build 4484c46d9d
 
 ## Docker images
@@ -65,28 +65,28 @@ Name containers
 >docker run --name containerNAME -d -p 8080:80 nginx:latest
 
 Format ps output
->docker ps --format '{{ .ID }}\t{{.Image}}\t{{ .Names }}'
+>docker ps --format '{{ .ID }}\t{{.Image}}\t{{ .Names }}'  
 >docker ps --format 'ID\t{{.ID}}\nName\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n'
 
 Save format (windows)
->$env:SHORT='{{ .ID }}\t{{.Image}}\t{{ .Names }}'
+>$env:SHORT='{{ .ID }}\t{{.Image}}\t{{ .Names }}'  
 >$env:FORMAT='ID\t{{.ID}}\nName\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n'
 
 Save format (macOS)
->export SHORT='{{ .ID }}\t{{.Image}}\t{{ .Names }}'
+>export SHORT='{{ .ID }}\t{{.Image}}\t{{ .Names }}'  
 >export FORMAT='ID\t{{.ID}}\nName\t{{.Names}}\nIMAGE\t{{.Image}}\nPORTS\t{{.Ports}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.CreatedAt}}\nSTATUS\t{{.Status}}\n'
 
 Use saved format (windows)
->docker ps --format=$env:SHORT
+>docker ps --format=$env:SHORT  
 >docker ps --format=$env:FORMAT
 
 Use saved format (macOS)
->docker ps --format=$SHORT
+>docker ps --format=$SHORT  
 >docker ps --format=$FORMAT
 
 ## Sharing of data in a Volume
 Lets make a directory and add a website to it:
->mkdir website
+>mkdir website  
 >cd website
 
 Download or create simple website and copy/past to the directory we created.
@@ -103,7 +103,7 @@ Run image with volume(windows)
 Run image with volume(macOS)
 >docker run --name containerNAME -v $(pwd):/usr/share/nginx/html -d -p 8080:80 nginx:latest
 
-Enter container bash
+Interactive Terminal
 >docker exec -it containerNAME bash
 
 	>ls -al		|	ls -Recurse
@@ -127,13 +127,13 @@ Create a 'Dockerfile' containing:
 	ADD . /usr/share/nginx/html
 
 Build
->docker build --tag containerNAME:latest .	|	docker build -t website:latest .
+>docker build --tag containerNAME:latest .	|	docker build -t website:latest .  
 >docker run -d -p 8080:80 containerNAME:latest
 
 ### With node.js example service
->mkdir nodejsapp
->cd nodejsapp
->install npm
+>mkdir nodejsapp  
+>cd nodejsapp  
+>install npm  
 Create index.js containing:
 
 	const express = require('express')
@@ -213,18 +213,18 @@ And:
 	CMD node index.js
 
 In the folder where we keep the website we want to serve with nginx
->docker build -t website:latest .
-In the folder where we keep the index.js we want to serve with node
->docker build -t nodeservice:latest .
+>docker build -t website:latest .  
+In the folder where we keep the index.js we want to serve with node  
+>docker build -t nodeservice:latest .  
 
-nginx containersize:
-134MB -> 23.6MB
+nginx containersize:  
+134MB -> 23.6MB  
 
-node containersize:
-971MB -> 145MB
+node containersize:  
+971MB -> 145MB  
 
-Running these container will have exact same result:
->docker run --name website -d -p 8080:80 website:latest
+Running these container will have exact same result:  
+>docker run --name website -d -p 8080:80 website:latest  
 >docker run --name nodeservice -d -p 8081:3000 nodeservice:latest
 
 ## Versioning
@@ -254,8 +254,9 @@ Why?
 
 For website
 >docker tag website:latest website:1
-For nodeservice
->docker tag nodeservice:latest nodeservice:1
+
+For nodeservice  
+>docker tag nodeservice:latest nodeservice:1  
 
 >docker image ls
 
@@ -276,34 +277,34 @@ Push to private or public registry
 - Make sure to use tagging standards & Push
 
 Tag:
->docker tag website:1 accountNAME/website:1
->docker tag website:2 accountNAME/website:2
+>docker tag website:1 accountNAME/website:1  
+>docker tag website:2 accountNAME/website:2  
 >docker tag website:latest accountNAME/website:latest
 
 Push:
->docker push accountNAME/website:1
->docker push accountNAME/website:2
+>docker push accountNAME/website:1  
+>docker push accountNAME/website:2  
 >docker push accountNAME/website:latest
 
-Similarly we create a repo for the nodeservice.
+Similarly we create a repo for the nodeservice.  
 
 Tag:
->docker tag nodeservice:1 accountNAME/nodeservice:1
->docker tag nodeservice:2 accountNAME/nodeservice:2
+>docker tag nodeservice:1 accountNAME/nodeservice:1  
+>docker tag nodeservice:2 accountNAME/nodeservice:2  
 >docker tag nodeservice:latest accountNAME/nodeservice:latest
 
 Push:
->docker push accountNAME/nodeservice:1
->docker push accountNAME/nodeservice:2
+>docker push accountNAME/nodeservice:1  
+>docker push accountNAME/nodeservice:2  
 >docker push accountNAME/nodeservice:latest
 
 ## To pull from own repo
 For nginx image:
->docker pull accountNAME/website:latest
+>docker pull accountNAME/website:latest  
 >docker run --name website -d -p 8080:80 accountNAME/website:latest
 
 For node image:
->docker pull accountNAME/nodeservice:latest
+>docker pull accountNAME/nodeservice:latest  
 >docker run --name nodeservice -d -p 8081:3000 accountNAME/nodeservice:latest
 
 ## Docker Inspect
@@ -312,16 +313,16 @@ To get information about container
 
 ## Docker Logs
 To get log
->docker log website
+>docker log website  
 >docker log nodeservice
 
 For live logs
->docker log -f website
+>docker log -f website  
 >docker log -f nodeservice
 
-## Entering containers
+## Interactive Terminal
 For website
->docker exec -it website sh
+>docker exec -it website sh  
 >cd /usr/share/nginx/html
 
 For nodeservice

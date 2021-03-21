@@ -1,5 +1,4 @@
 # Docker & Kubernetes
-[Full FreeCodeCamp Video](https://www.youtube.com/watch?v=Wf2eSG3owoA)  
-- [Docker MarkDown](https://github.com/H3AR7B3A7/DockerAndKubernetes/blob/master/Docker.md)  
-- [Kubernetes Markdown](https://github.com/H3AR7B3A7/DockerAndKubernetes/blob/master/Kubernetes.md)  
-
+Full video on: [FreeCodeCamp](https://www.youtube.com/watch?v=Wf2eSG3owoA) / [Amigoscode](https://www.youtube.com/watch?v=bhBSlnQcq2k&t=23s)  
+- [Docker Markdown](Docker.md)  
+- [Kubernetes Markdown](Kubernetes.md)

@@ -5,7 +5,7 @@ docker run -p 5432:5432 --name myPostgres -e POSTGRES_PASSWORD=mysecretpassword 
 (default password = postgres)
 
 ## Creating Postgres Server container with Docker volumes
-Create a folder, for example: ‘C:/data/pg’
+Create a folder, for example: ‘C:/data/pg’  
 docker run -p 5432:5432 --name myPostgres -e POSTGRES_PASSWORD=mysecretpassword -v C:/data/pg:/var/lib/postgresql/data -d postgres:alpine
 
 ## Creating PgAdmin4 Container

@@ -34,6 +34,9 @@
 
 > lxc info FirstContainer
 
+In container:
+> cat /etc/os-release
+
 ### Enter Container
 
 > lxc exec FirstContainer bash
@@ -91,17 +94,75 @@ user            root
 IdentityFile    ~/.ssh.id_rsa
 ```
 
-ssh first
+> ssh first
 
-### Push Files to container
+If the container doesn't have ssh, like the alpine container:
 
-> lxc push files
+> apk add openssh
+
+> rc-update add sshd
+
+> /etc/init.d/sshd start
+
+Then go through the previous steps...
+
+### Push Files to Container
+
+> lxc file push /path/to/file FirstContainer/path/to/destination/for/file
+
+### Pull Files to Host
+
+> lxc file pull FirstContainer/path/to/file /path/to/destination/for/file
+
+### Edit File in Container
+
+> lxc file edit FirstContainer/path/to/file
+
+### Create Snapshot
+
+> lxc snapshot FirstContainer
+
+### Restore Container to Snapshot
+
+> lxc restore FirstContainer snap0
+
+### Delete Snapshot
+
+> lxc delete FirstContainer/snap0
 
 
+## Exposing Containers
 
+### Create Bridge
 
+> cd /etc/netplan
 
+> ls
 
+> nano name-of-netplan.yaml
+
+```
+network:
+    version: 2
+    rederer: networkd
+    
+    ethernets:
+        eth0:
+            dhcp4: false
+            dhcp6: false
+    bridges:
+        br0:
+            interfaces: [eth0]
+            dhcp4: true
+```
+
+### Configure Container
+
+> lxc config device add FirstContainer eth0 nic nictype=bridged parent=br0 name=eth0
+
+### Restart Container
+
+> lxc restart FirstContainer
 
 
 

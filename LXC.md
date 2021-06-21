@@ -165,6 +165,3 @@ network:
 > lxc restart FirstContainer
 
 
-
-
-

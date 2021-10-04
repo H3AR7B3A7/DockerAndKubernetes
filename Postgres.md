@@ -24,7 +24,17 @@ http://localhost:5050
 ## Using either PgAdmin4 installation or container
 
 PgAdmin4 > Servers > New Server  
-Host: PC-NAME  
+Host name / address: PC-NAME / IPv4 address 
 Port: 5432  
 Username: postgres  
 Password: pass
+
+*We can get the Host name or IPv4 address of our machine easily with following command:*
+
+- Windows
+
+> ipconfig /all
+
+- Linux
+
+> ip a

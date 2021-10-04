@@ -27,4 +27,4 @@ PgAdmin4 > Servers > New Server
 Host: PC-NAME  
 Port: 5432  
 Username: postgres  
-Password: mysecretpassword
+Password: pass

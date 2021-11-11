@@ -149,11 +149,16 @@ Create mongo-secret.yaml containing:
         mongo-root-password: cGFzc3dvcmQ=
 
 Encode:
->[Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes('username'))
+```bash
+[Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes('username'))
+```
 
 Decode:
->[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('cGFzc3dvcmQ='))
+```bash
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('cGFzc3dvcmQ='))
+```
 
+Applying secret:
 >kubectl apply -f mongo-secret.yaml  
 >kubectl apply -f mongo.yaml  
 >kubectl get pod --watch  

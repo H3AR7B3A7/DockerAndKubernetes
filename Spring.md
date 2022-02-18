@@ -1,8 +1,11 @@
 # Spring & Docker
 
 ## Maven
->mvn -N io.takari:maven:wrapper
->mvnw spring-boot:build-image
+- To create the wrapper file if absent:
+    >mvn -N io.takari:maven:wrapper
+
+- To build the image:
+    >./mvnw spring-boot:build-image
 
 To skip tests (not recommended): 
 
@@ -15,12 +18,21 @@ To skip tests (not recommended):
 		</configuration>
 	</plugin>
 
-Tag and Push image to Docker HUB
+- Tag and Push image to Docker HUB:
+    > docker tag name:0.0.1 h3ar7b3a7/name:0.0.1
+    
+    > docker tag name:0.0.1 h3ar7b3a7/name:latest
+    
+    > docker push h3ar7b3a7/name:0.0.1
+    
+    > docker push h3ar7b3a7/name:latest
 
 ## Gradle
->gradlew build
+- To build the wrapper
+    >gradlew build
 
->docker build --build-arg JAR_FILE=build/libs/tjenterprise-0.0.1.jar -t h3ar7b3a7/tjenterprise .
+- To build the image
+    >docker build --build-arg JAR_FILE=build/libs/tjenterprise-0.0.1.jar -t h3ar7b3a7/tjenterprise .
 
 or with Dockerfile:
 
@@ -29,5 +41,6 @@ or with Dockerfile:
 	COPY ${JAR_FILE} app.jar
 	ENTRYPOINT ["java","-jar","/app.jar"]
 
-Tag and Push image to Docker HUB
+- Tag and Push image to Docker HUB
 
+  Same as above (under Maven)...

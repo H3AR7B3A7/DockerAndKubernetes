@@ -99,7 +99,7 @@ Use saved format (macOS)
 
 ## Sharing of data in a Volume
 
-Lets make a directory and add a website to it:
+Let's make a directory and add a website to it:
 > mkdir website  
 > cd website
 
@@ -317,7 +317,7 @@ Push:
 > docker push accountNAME/website:2  
 > docker push accountNAME/website:latest
 
-Similarly we create a repo for the nodeservice.
+Similarly, we create a repo for the nodeservice.
 
 Tag:
 > docker tag nodeservice:1 accountNAME/nodeservice:1  
